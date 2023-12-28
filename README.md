@@ -12,6 +12,7 @@ To run the server program - ./main.
 To compile the client program - gcc -o main *.c -lssl -lcrypto -lpthread.
 To use the client program - ./main <host_ip> <portnum>.
 Make sure the server is running before you connect through the client.
+The client and server source code are in seperate branches.
 
 The project is far from perfect. Memory leaks are abundant, especially on the server side and there is a problem with the openssl library once the intermediary server receives a certain amount of client messages.
 Nonetheless, it has been interesting and informative working with sockets and encryption in C and the shortcomings of this project are a reason to revisit it in the future. 
