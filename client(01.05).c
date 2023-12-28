@@ -2,6 +2,7 @@
 #include "Communicate(01.05).h"
 #include "ConnectToServer.h"
 #include "SSL_Handler.h"
+#include "signal.h"
 
     SSLData *dataFD = NULL;
     pthread_t nodeServer;
@@ -15,9 +16,9 @@ int main(int argc, char *argv[])
     }
     
     
-	dataFD = (SSLData*)malloc(sizeof(SSLData));
-	dataFD->nodeSSL = NULL;
-	dataFD->ssl = NULL;
+    dataFD = (SSLData*)malloc(sizeof(SSLData));
+    dataFD->nodeSSL = NULL;
+    dataFD->ssl = NULL;
 	
     char c;
     pthread_t clientCom;
@@ -80,22 +81,14 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
     
-    int count;
-    
     do
-    {
-        count++;
-
-        if (count <= 2)
-        {
-            puts("Do you wish to be NodeServer? Yes - Y/No - N");
-        }
-
+    {           
+	puts("Do you wish to be NodeServer? Yes - Y/No - N");
         scanf("%c", &c);    
+	if (c != 'Y' && c != 'N') puts("Invalid input");
     } 
     while (c != 'Y' && c != 'N');
-    
-    count = 0;
+
 
     if (c != 'Y')
     {
