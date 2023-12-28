@@ -6,7 +6,7 @@ The project was developed on Linux, so it should be compiled and run on Linux.
 Dependencies & Usage:
 For compilation the openssl and pthread libraries are required.
 To install openssl - sudo apt install libssl-dev.
-To install pthread on Ubuntu based systems - sudo apt-get install libpthread-stubs0-dev.
+To install pthread on Ubuntu based systems - sudo apt install libpthread-stubs0-dev.
 To compile the server program - gcc -o main *.c -lssl -lcrypto -lpthread.
 To run the server program - ./main.
 To compile the client program - gcc -o main *.c -lssl -lcrypto -lpthread.
