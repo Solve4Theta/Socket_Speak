@@ -1,5 +1,5 @@
-
 #include "Communicate(01.05).h"
+#include "signal.h"
 
 struct node *head = NULL;
 
@@ -80,17 +80,17 @@ void * NodeServer(void * ssl)
         pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);
         
         if (flag != 1)
-		{
-			flag = 1;
-			if (pthread_create(&threadID2, NULL, NodeListenToServer, (void *)SSL) != 0)
-			{
-				perror("Error creating thread 3!");
-				exit(EXIT_FAILURE);
-			}
+	{
+	    flag = 1;
+	    if (pthread_create(&threadID2, NULL, NodeListenToServer, (void *)SSL) != 0)
+	    {
+	        perror("Error creating thread 3!");
+		exit(EXIT_FAILURE);
+	    }
             
             pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
             pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);
-		}
+	}
         
     }
 
@@ -315,22 +315,20 @@ void * NodeListenToServer(void * ssl)
         printf("Received from server: %s\n", buf);
         
         while (ptr != NULL)
-		{
-			if ((write = SSL_write(ptr->client, buf, (int)strlen(buf))) > 0)
-	        {
-	            printf("Sending client %d: %s\n", ptr->id, buf);
-	        }
-	        else
-	        {
-	            printf("Shutting down connection to Client %d\n", ptr->id);
-				ptr = DeleteClient(ptr->id);
-				printf("Connection shut down\n"); 
-	        }
-	        
-	        ptr = ptr->pNext; 
-		}
-		
-		ptr = head;
+	{
+	    if ((write = SSL_write(ptr->client, buf, (int)strlen(buf))) > 0)
+	    {
+	        printf("Sending client %d: %s\n", ptr->id, buf);
+	    }
+	    else
+	    {
+	        printf("Shutting down connection to Client %d\n", ptr->id);
+		ptr = DeleteClient(ptr->id);
+		printf("Connection shut down\n"); 
+	    }    
+	    ptr = ptr->pNext; 
+        }
+        ptr = head;
         memset(buf, 0, sizeof(buf));
     }
     
