@@ -1,4 +1,4 @@
-# Socket_Speak
+# socket_speak
 First time exploring the socket interface provided for the C programming language.
 There is an option for the client to be an intermediary server in hopes to lighten the load on the server as the original aim was to run the server on an old Raspberry Pi. This will be prompted by the client program. 
 The project was developed on Linux, so it should be compiled and run on Linux.
